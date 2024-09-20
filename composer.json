@@ -1,0 +1,74 @@
+{
+    "name": "laravel/laravel",
+    "type": "project",
+    "description": "The skeleton application for the Laravel framework.",
+    "keywords": [
+        "laravel",
+        "framework"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "^8.2",
+        "hybridly/laravel": "^0.7.14",
+        "laravel/framework": "^11.9",
+        "laravel/tinker": "^2.9",
+        "spatie/laravel-data": "^4.9"
+    },
+    "require-dev": {
+        "barryvdh/laravel-ide-helper": "^3.1",
+        "fakerphp/faker": "^1.23",
+        "laravel/pint": "^1.13",
+        "laravel/sail": "^1.26",
+        "mockery/mockery": "^1.6",
+        "nunomaduro/collision": "^8.0",
+        "pestphp/pest": "^2.0",
+        "pestphp/pest-plugin-laravel": "^2.0",
+        "spatie/laravel-typescript-transformer": "^2.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "scripts": {
+        "test": "pest",
+        "lint": "php-cs-fixer fix --allow-risky=yes --dry-run",
+        "lint:fix": "php-cs-fixer fix --allow-risky=yes",
+        "post-update-cmd": "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
+        "post-root-package-install": "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi",
+            "([ $COMPOSER_DEV_MODE -eq 1 ] && composer autocomplete) || true"
+        ],
+        "autocomplete": [
+            "@php artisan ide-helper:eloquent || true",
+            "@php artisan ide-helper:generate || true",
+            "@php artisan ide-helper:meta || true",
+            "@php artisan ide-helper:models -M || true"
+        ]
+    }
+}
